@@ -1,11 +1,15 @@
+import { useState } from "react";
 import "./App.css";
 import Login from "./componnets/Login";
+import Main from "./componnets/Main";
 
 function App() {
+  const [authorized, setAuthorized] = useState(false);
+
   return (
     <div className="App">
       <p>dsfgsfg</p>
-      <Login />
+      {authorized ? <Main /> : <Login setAuthorized={setAuthorized} />}
     </div>
   );
 }

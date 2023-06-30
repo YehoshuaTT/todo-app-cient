@@ -14,7 +14,7 @@ import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 
-function Login() {
+function Login({ setAuthorized }) {
   const [email, setEmail] = useState([]);
   const [password, SetPassword] = useState([]);
   const [firstName, setFirstName] = useState([]);
@@ -25,11 +25,16 @@ function Login() {
 
   let user = { email, password, firstName, lastName, username };
   const logRegFunction = async () => {
-    const data = await axios.post(
-      `http://localhost:4000/auth/${registerOrLogin}/`,
-      user
-    );
-    console.log(data);
+    if (registerOrLogin === "register") {
+      const data = await axios.post(
+        `http://localhost:4000/auth/${registerOrLogin}/`,
+        user
+      );
+      console.log(data);
+    }
+    const logged = await axios.post(`http://localhost:4000/auth/login/`, user);
+
+    setAuthorized(true);
     // setFirstName("hello " + data.user.firstName);
   };
   return (
