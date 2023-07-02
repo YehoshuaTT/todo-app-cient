@@ -25,17 +25,16 @@ function Login({ setAuthorized }) {
 
   let user = { email, password, firstName, lastName, username };
   const logRegFunction = async () => {
-    if (registerOrLogin === "register") {
-      const data = await axios.post(
-        `http://localhost:4000/auth/${registerOrLogin}/`,
-        user
-      );
-      console.log(data);
-    }
-    const logged = await axios.post(`http://localhost:4000/auth/login/`, user);
-
+    // if (registerOrLogin === "register") {
+    const data = await axios.post(`auth/${registerOrLogin}/`, user);
+    console.log(data);
+    // }
+    // const response = await axios.post(`/auth/login/`, {
+    //   email,
+    //   password,
+    // });
+    // console.log(response);
     setAuthorized(true);
-    // setFirstName("hello " + data.user.firstName);
   };
   return (
     <div>
