@@ -2,46 +2,53 @@ import { useState } from "react";
 import "./App.css";
 import Login from "./componnets/Login";
 import Main from "./componnets/Main";
-import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Register from "./componnets/Register";
 import Todos from "./componnets/Todos";
 import Lists from "./componnets/Lists";
+import ProtectedRout from "./componnets/ProtectedRout";
+import UnProtectedRout from "./componnets/UnProtectedRout";
 
 function App() {
   const [authorized, setAuthorized] = useState(false);
-
-  const isAuthenticated = true;
+  const [user, setUser] = useState(null);
+  console.log(authorized);
 
   return (
     <div className="App">
-      <p>dsfgsfg</p>
+      <p>App</p>
+
       <BrowserRouter>
         <Routes>
-          {!authorized && (
-            <>
-              <Route
-                path="/login"
-                element={<Login setAuthorized={setAuthorized} />}
+          <Route
+            path="/"
+            element={
+              <ProtectedRout
+                authorized={authorized}
+                setAuthorized={setAuthorized}
+                setUser={setUser}
               />
-              <Route
-                path="/register"
-                element={<Register setAuthorized={setAuthorized} />}
-              />
-            </>
-          )}
+            }
+          >
+            <Route exact path="/" element={<Main user={user} />} />
+            <Route exact path="/main" element={<Main user={user} />} />
+            <Route exact path="/todos" element={<Todos />} />
+            <Route exact path="/list" element={<Lists />} />
+          </Route>
 
           <Route
-            element={isAuthenticated ? <Main /> : <Login />}
-            path={isAuthenticated ? "/main" : "/login"}
-          />
-          <Route
-            path={isAuthenticated ? "/Todos" : "/login"}
-            element={isAuthenticated ? <Todos /> : <Login />}
-          />
-          <Route
-            path={isAuthenticated ? "/List" : "/login"}
-            element={isAuthenticated ? <Lists /> : <Login />}
-          />
+            path="/login"
+            element={<UnProtectedRout authorized={authorized} />}
+          >
+            <Route
+              path="/login"
+              element={<Login setAuthorized={setAuthorized} />}
+            />
+            <Route
+              path="/login/register"
+              element={<Register setAuthorized={setAuthorized} />}
+            />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,32 +1,31 @@
-/*
-React router
-
-pages folder.
-login page
-
-home page
-
-
-
-*/
-
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import HttpService from "../services/httpService";
 import { useNavigate } from "react-router-dom";
 
-function Login({ setAuthorized }) {
+function Login({ authorized, setAuthorized }) {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState([]);
-  const [password, SetPassword] = useState([]);
+  if (authorized) navigate("/main");
+  const [email, setEmail] = useState("");
+  const [password, SetPassword] = useState();
 
   let user = { email, password };
 
-  const logRegFunction = async () => {
-    if (HttpService.login("login", user)) setAuthorized(true);
+  const areAllFieldsFilled = () => {
+    for (const field in user) {
+      if (!user[field]) {
+        return false;
+      }
+    }
+    return true;
   };
-
+  const logRegFunction = async () => {
+    if (await HttpService.login("login", user)) {
+      setAuthorized(true);
+      navigate("/main");
+    }
+  };
   return (
     <div>
       <div>
@@ -46,12 +45,16 @@ function Login({ setAuthorized }) {
         variant="standard"
         type="password"
       />
-      <Button onClick={() => logRegFunction()} variant="contained">
+      <Button
+        disabled={!areAllFieldsFilled()}
+        onClick={() => logRegFunction()}
+        variant="contained"
+      >
         send
       </Button>
 
       <p>Not yet registerd?</p>
-      <Button variant="contained" onClick={() => navigate("/register")}>
+      <Button variant="contained" onClick={() => navigate("/login/register")}>
         Register
       </Button>
     </div>

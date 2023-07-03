@@ -3,19 +3,31 @@ import React, { useState } from "react";
 import HttpService from "../services/httpService";
 import { useNavigate } from "react-router-dom";
 
-function Register({ setAuthorized }) {
+function Register({ authorized, setAuthorized }) {
   const navigate = useNavigate();
-
-  const [email, setEmail] = useState([]);
-  const [password, SetPassword] = useState([]);
-  const [firstName, setFirstName] = useState([]);
-  const [lastName, setLastName] = useState([]);
-  const [username, setUserName] = useState([]);
+  authorized && navigate("/main");
+  const [email, setEmail] = useState(undefined);
+  const [password, SetPassword] = useState(undefined);
+  const [firstName, setFirstName] = useState(undefined);
+  const [lastName, setLastName] = useState(undefined);
+  const [username, setUserName] = useState(undefined);
 
   let user = { email, password, firstName, lastName, username };
 
+  const areAllFieldsFilled = () => {
+    for (const field in user) {
+      if (!user[field]) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   const logRegFunction = async () => {
-    if (HttpService.login("register", user)) setAuthorized(true);
+    if (await HttpService.login("register", user)) {
+      setAuthorized(true);
+      navigate("/main");
+    }
   };
 
   return (
@@ -25,6 +37,7 @@ function Register({ setAuthorized }) {
         id="email"
         label="Email"
         variant="standard"
+        required
       />
       <TextField
         onChange={(e) => SetPassword(e.target.value)}
@@ -32,8 +45,14 @@ function Register({ setAuthorized }) {
         label="password"
         variant="standard"
         type="password"
+        required
       />
-      <Button onClick={() => logRegFunction()} variant="contained">
+      <Button
+        onClick={() => logRegFunction()}
+        variant="contained"
+        type="submit"
+        disabled={!areAllFieldsFilled()}
+      >
         send
       </Button>
 
@@ -43,15 +62,18 @@ function Register({ setAuthorized }) {
           id="firstname"
           label="Firs name"
           variant="standard"
+          required
         />
         <TextField
           onChange={(e) => setLastName(e.target.value)}
           id="lastname"
+          required
           label="Last name"
           variant="standard"
           type="text"
         />
         <TextField
+          required
           onChange={(e) => setUserName(e.target.value)}
           id="username"
           label="Username"
