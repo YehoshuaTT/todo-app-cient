@@ -1,74 +1,65 @@
-/*
-React router
-
-pages folder.
-login page
-
-home page
-
-
-
-*/
-
-import { TextField } from "@mui/material";
-import axios from "axios";
+import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
+import HttpService from "../services/httpService";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
-  const [email, setEmail] = useState([]);
-  const [password, SetPassword] = useState([]);
-  const [firstName, setFirsName] = useState([]);
-  const [toggelRegLogin, setToggelRegLogin] = useState(true);
+function Login({ authorized, setAuthorized }) {
+  const navigate = useNavigate();
 
-  let user = { email: email, password: password };
-  const alertIT = async () => {
-    const { data } = await axios.post(`/auth/login`, user);
-    setFirsName("hello " + data.user.firstName);
+  const [email, setEmail] = useState();
+  const [password, SetPassword] = useState();
+
+  let user = { email, password };
+
+  const areAllFieldsFilled = () => {
+    for (const field in user) {
+      if (!user[field]) {
+        return false;
+      }
+    }
+    return true;
+  };
+  const logRegFunction = async () => {
+    if (await HttpService.login("login", user)) {
+      setAuthorized(true);
+      navigate("/main");
+    }
   };
   return (
     <div>
-      <p>Login </p>
-      <div>{firstName}</div>
+      <div>
+        <h1 id="title">Todo App</h1>
+      </div>
+
       <TextField
         onChange={(e) => setEmail(e.target.value)}
-        id="username"
-        label="username"
+        id="email"
+        label="Email"
+        type="email"
         variant="standard"
+        required
       />
       <TextField
+        required
         onChange={(e) => SetPassword(e.target.value)}
         id="password"
         label="password"
         variant="standard"
         type="password"
       />
-      <button onClick={() => alertIT()}>
-        {toggelRegLogin ? "login" : "regiser"}
-      </button>
-      {toggelRegLogin && (
-        <>
-          <TextField
-            onChange={(e) => setEmail(e.target.value)}
-            id="username"
-            label="username"
-            variant="standard"
-          />
-          <TextField
-            onChange={(e) => SetPassword(e.target.value)}
-            id="password"
-            label="password"
-            variant="standard"
-            type="password"
-          />
-          <button onClick={() => alertIT()}>send</button>
-        </>
-      )}
-      <div>
-        not registerd yet?
-        <button onClick={() => setToggelRegLogin(!toggelRegLogin)}>
-          register
-        </button>
-      </div>
+      <Button
+        disabled={!areAllFieldsFilled()}
+        onClick={() => logRegFunction()}
+        variant="contained"
+        type="submit"
+      >
+        send
+      </Button>
+
+      <p>Not yet registerd?</p>
+      <Button variant="contained" onClick={() => navigate("/login/register")}>
+        Register
+      </Button>
     </div>
   );
 }
