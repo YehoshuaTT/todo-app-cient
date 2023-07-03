@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 function Register({ authorized, setAuthorized }) {
   const navigate = useNavigate();
-  authorized && navigate("/main");
   const [email, setEmail] = useState(undefined);
   const [password, SetPassword] = useState(undefined);
   const [firstName, setFirstName] = useState(undefined);
@@ -38,6 +37,8 @@ function Register({ authorized, setAuthorized }) {
         label="Email"
         variant="standard"
         required
+        type="email"
+        data-msg-containerid="sdfnl"
       />
       <TextField
         onChange={(e) => SetPassword(e.target.value)}

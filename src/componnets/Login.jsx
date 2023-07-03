@@ -6,8 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Login({ authorized, setAuthorized }) {
   const navigate = useNavigate();
 
-  if (authorized) navigate("/main");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState();
   const [password, SetPassword] = useState();
 
   let user = { email, password };
@@ -36,9 +35,12 @@ function Login({ authorized, setAuthorized }) {
         onChange={(e) => setEmail(e.target.value)}
         id="email"
         label="Email"
+        type="email"
         variant="standard"
+        required
       />
       <TextField
+        required
         onChange={(e) => SetPassword(e.target.value)}
         id="password"
         label="password"
@@ -49,6 +51,7 @@ function Login({ authorized, setAuthorized }) {
         disabled={!areAllFieldsFilled()}
         onClick={() => logRegFunction()}
         variant="contained"
+        type="submit"
       >
         send
       </Button>

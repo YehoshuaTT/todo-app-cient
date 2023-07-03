@@ -30,7 +30,6 @@ function App() {
               />
             }
           >
-            <Route exact path="/" element={<Main user={user} />} />
             <Route exact path="/main" element={<Main user={user} />} />
             <Route exact path="/todos" element={<Todos />} />
             <Route exact path="/list" element={<Lists />} />
