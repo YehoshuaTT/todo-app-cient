@@ -22,4 +22,13 @@ export default class HttpService {
       return false;
     }
   }
+
+  static async listsIndex() {
+    try {
+      const { data } = await axios.get(`/lists`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
