@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default class HttpService {
+class HttpService {
   static async login(registerOrLogin, user) {
     try {
       console.log(user);
@@ -25,7 +25,7 @@ export default class HttpService {
 }
 
 class ListService {
-  static async listsIndex() {
+  static async Index() {
     try {
       const { data } = await axios.get(`/lists`);
       return data;
@@ -34,7 +34,7 @@ class ListService {
     }
   }
 
-  static async listShow(listId) {
+  static async Show(listId) {
     try {
       const { data } = await axios.get(`/lists/${listId}`);
       return data;
@@ -43,7 +43,7 @@ class ListService {
     }
   }
 
-  static async listCreate(listInfo) {
+  static async create(listInfo) {
     try {
       const { data } = await axios.post(`/lists`, listInfo);
       return data;
@@ -52,7 +52,7 @@ class ListService {
     }
   }
 
-  static async listsUpdate(listId, update) {
+  static async update(listId, update) {
     try {
       const { data } = await axios.put(`/lists/${listId}`, update);
       return data;
@@ -61,7 +61,7 @@ class ListService {
     }
   }
 
-  static async listDelete(listId) {
+  static async delete(listId) {
     try {
       const { data } = await axios.delete(`/lists/${listId}`);
       return data;
@@ -70,7 +70,7 @@ class ListService {
     }
   }
 
-  static async listAddTodo(listId, todo) {
+  static async addTodo(listId, todo) {
     try {
       const { data } = await axios.post(`/lists/${listId}/todos`, todo);
       return data;
@@ -78,7 +78,7 @@ class ListService {
       console.log(error);
     }
   }
-  static async listToggle(listId, todoId) {
+  static async toggle(listId, todoId) {
     try {
       const { data } = await axios.put(`/lists/${listId}/todos${todoId}`);
       return data;
@@ -89,7 +89,7 @@ class ListService {
 }
 
 class TodoService {
-  static async todosIndex() {
+  static async index() {
     try {
       const { data } = await axios.get(`/todos`);
       return data;
@@ -98,7 +98,7 @@ class TodoService {
     }
   }
 
-  static async todoShow(todoId) {
+  static async show(todoId) {
     try {
       const { data } = await axios.get(`/todos/${todoId}`);
       return data;
@@ -107,7 +107,7 @@ class TodoService {
     }
   }
 
-  static async todoCreate(todoInfo) {
+  static async create(todoInfo) {
     try {
       const { data } = await axios.post(`/todos`, todoInfo);
       return data;
@@ -116,7 +116,7 @@ class TodoService {
     }
   }
 
-  static async todoUpdate(todoId, update) {
+  static async update(todoId, update) {
     try {
       const { data } = await axios.put(`/todos/${todoId}`, update);
       return data;
@@ -125,7 +125,7 @@ class TodoService {
     }
   }
 
-  static async todoDelete(todoId) {
+  static async delete(todoId) {
     try {
       const { data } = await axios.delete(`/todos/${todoId}`);
       return data;
@@ -134,7 +134,7 @@ class TodoService {
     }
   }
 
-  static async todoToggle(todoId) {
+  static async toggle(todoId) {
     try {
       const { data } = await axios.put(`/todos/${todoId}/toggle`);
       return data;
@@ -145,7 +145,7 @@ class TodoService {
 }
 
 class CategoryService {
-  static async categoryIndex() {
+  static async index() {
     try {
       const { data } = await axios.get(`/categories`);
       return data;
@@ -154,7 +154,7 @@ class CategoryService {
     }
   }
 
-  static async categoryShow(categoryId) {
+  static async show(categoryId) {
     try {
       const { data } = await axios.get(`/categories/${categoryId}`);
       return data;
@@ -163,7 +163,7 @@ class CategoryService {
     }
   }
 
-  static async categoryCreate(categoryInfo) {
+  static async create(categoryInfo) {
     try {
       const { data } = await axios.post(`/categories`, categoryInfo);
       return data;
@@ -172,7 +172,7 @@ class CategoryService {
     }
   }
 
-  static async categoryUpdate(categoryId, update) {
+  static async update(categoryId, update) {
     try {
       const { data } = await axios.put(`/categories/${categoryId}`, update);
       return data;
@@ -181,7 +181,7 @@ class CategoryService {
     }
   }
 
-  static async categoryDelete(categoryId) {
+  static async delete(categoryId) {
     try {
       const { data } = await axios.delete(`/categories/${categoryId}`);
       return data;
@@ -190,4 +190,4 @@ class CategoryService {
     }
   }
 }
-module.exports = { ListService, CategoryService, TodoService };
+export { ListService, CategoryService, TodoService, HttpService };

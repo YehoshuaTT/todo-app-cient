@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import HttpService from "../services/httpService";
+import { ListService } from "../services/httpService";
 import Todos from "./Todos";
 
 function Lists() {
@@ -8,7 +8,7 @@ function Lists() {
 
   useEffect(() => {
     const fetchLists = async () => {
-      const lists = await HttpService.listsIndex();
+      const lists = await ListService.listsIndex();
       if (lists) {
         setLists(lists);
         console.log(lists);
