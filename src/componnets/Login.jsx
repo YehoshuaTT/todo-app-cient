@@ -2,6 +2,7 @@ import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { HttpService } from "../services/httpService";
 import { useNavigate } from "react-router-dom";
+import SendIcon from "@mui/icons-material/Send";
 
 function Login({ authorized, setAuthorized }) {
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ function Login({ authorized, setAuthorized }) {
         onClick={() => logRegFunction()}
         variant="contained"
         type="submit"
+        endIcon={<SendIcon />}
       >
         send
       </Button>

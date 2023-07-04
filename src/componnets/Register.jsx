@@ -2,6 +2,7 @@ import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { HttpService } from "../services/httpService";
 import { useNavigate } from "react-router-dom";
+import SendIcon from "@mui/icons-material/Send";
 
 function Register({ authorized, setAuthorized }) {
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ function Register({ authorized, setAuthorized }) {
         variant="contained"
         type="submit"
         disabled={!areAllFieldsFilled()}
+        endIcon={<SendIcon />}
       >
         send
       </Button>

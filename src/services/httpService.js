@@ -25,7 +25,7 @@ class HttpService {
 }
 
 class ListService {
-  static async Index() {
+  static async index() {
     try {
       const { data } = await axios.get(`/lists`);
       return data;
