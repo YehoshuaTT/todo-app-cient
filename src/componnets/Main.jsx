@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Lists from "./Lists";
 
 function Main() {
@@ -7,7 +7,12 @@ function Main() {
   return (
     <>
       <div>Main</div>
-      <Lists />
+      <nav>
+        <Link to={"/lists"}> My lists </Link>
+        <Link to={"/todos"}> My Todos </Link>
+        <Link to={"/main"}> Home </Link>
+        <Link to={"/categories"}>My categories</Link>
+      </nav>
       <button onClick={() => navigate("/login")}>login</button>
     </>
   );
