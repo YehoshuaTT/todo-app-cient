@@ -1,13 +1,14 @@
-import { useState } from "react";
 import "./App.css";
+import { useState } from "react";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import ProtectedRout from "./componnets/ProtectedRout";
+import UnProtectedRout from "./componnets/UnProtectedRout";
+
 import Login from "./pages/Login";
 import Main from "./pages/Main";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Register from "./pages/Register";
 import Todos from "./pages/Todos";
 import Lists from "./pages/Lists";
-import ProtectedRout from "./componnets/ProtectedRout";
-import UnProtectedRout from "./componnets/UnProtectedRout";
 import Categories from "./pages/Categories";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 
       <BrowserRouter>
         <Routes>
+          <Route exact path="/main" element={<Main user={user} />} />
           <Route
             path="/"
             element={
@@ -31,7 +33,6 @@ function App() {
               />
             }
           >
-            <Route exact path="/main" element={<Main user={user} />} />
             <Route exact path="/todos/*" element={<Todos />} />
             <Route exact path="/lists" element={<Lists />} />
             <Route exact path="/categories" element={<Categories />} />

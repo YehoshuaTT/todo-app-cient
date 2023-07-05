@@ -8,7 +8,7 @@ import {
   TodoService,
 } from "../services/httpService";
 
-function EditItem({ type, itemId, setItem }) {
+function EditItem({ type, itemId, setItem, text }) {
   const [showFields, setShowFields] = useState(false);
 
   const services = [
@@ -35,7 +35,8 @@ function EditItem({ type, itemId, setItem }) {
       >
         <ModeEditOutlineOutlinedIcon fontSize="inherit" />
       </IconButton>
-      {showFields && <EditFields callBack={EditFunction} />}
+
+      {showFields && <EditFields callBack={EditFunction} text={text} />}
     </>
   );
 }

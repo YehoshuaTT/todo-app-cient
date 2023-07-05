@@ -1,9 +1,9 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
 
-function EditFields({ callBack }) {
-  const [description, setDescription] = useState(undefined);
-  const [title, setTitle] = useState(undefined);
+function EditFields({ callBack, text }) {
+  const [title, setTitle] = useState(text.title);
+  const [description, setDescription] = useState(text.description);
 
   const manegFields = async () => {
     if (title?.length > 0 && description?.length > 0)
@@ -16,7 +16,7 @@ function EditFields({ callBack }) {
         required
         id="outlined-required"
         label="title"
-        placeholder="title"
+        defaultValue={text.title}
         onChange={(e) => setTitle(e.target.value)}
         onBlur={manegFields}
       />
@@ -24,7 +24,7 @@ function EditFields({ callBack }) {
         required
         id="outlined-required"
         label="description"
-        placeholder="description"
+        defaultValue={text.description}
         onChange={(e) => setDescription(e.target.value)}
         onBlur={manegFields}
       />

@@ -1,29 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { TodoService } from "../services/httpService";
+import AddItem from "../componnets/AddItem";
+import DeleteItem from "../componnets/DeleteItem";
+import EditItem from "../componnets/EditItem";
 
 function Todos({ todosFromList }) {
-  const [todos, setTodos] = useState([null]);
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     const fetchTodos = async () => {
       if (todosFromList) {
         setTodos(todosFromList);
-        return;
-      } else setTodos(await TodoService.index());
+      } else {
+        const fetchedTodos = await TodoService.index();
+        setTodos(fetchedTodos);
+      }
     };
 
-    return () => {
-      fetchTodos();
-    };
-  }, []);
+    fetchTodos();
+  }, [todosFromList]);
 
-  return todos ? (
-    <div key={todos.id} className="todo-container">
-      <div className="todo-title">{todos.title}</div>
-      <div className="todo-description">{todos.description}</div>
+  return (
+    <div className="todo">
+      My Todos: <AddItem type={"todos"} setItem={setTodos} />
+      {todos.length > 0 ? (
+        todos.map((todo) => (
+          <div key={todo.id} className="todo-container">
+            <div className="todo-title">{todo.title}</div>
+            <div className="todo-description">{todo.description}</div>
+            <DeleteItem type={"todos"} itemId={todo._id} setItem={setTodos} />
+            <EditItem
+              type={"todos"}
+              itemId={todo._id}
+              setItem={setTodos}
+              text={{ title: todo.title, description: todo.description }}
+            />
+          </div>
+        ))
+      ) : (
+        <p>no todos</p>
+      )}
     </div>
-  ) : (
-    <p>no todos</p>
   );
 }
 

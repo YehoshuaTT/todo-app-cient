@@ -4,6 +4,7 @@ import Todos from "./Todos";
 import DeleteItem from "../componnets/DeleteItem";
 import EditItem from "../componnets/EditItem";
 import AddItem from "../componnets/AddItem";
+
 function Lists() {
   const [selectedList, setSelectedList] = useState(null);
   const [lists, setLists] = useState([]);
@@ -41,7 +42,12 @@ function Lists() {
           >
             {list.title}
             <DeleteItem type={"lists"} itemId={list._id} setItem={setLists} />
-            <EditItem type={"lists"} itemId={list._id} setItem={setLists} />
+            <EditItem
+              type={"lists"}
+              itemId={list._id}
+              setItem={setLists}
+              text={{ title: list.title, description: list.description }}
+            />
           </ul>
 
           {selectedList === list && (
