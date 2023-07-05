@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
-import HttpService from "../services/httpService";
+import { HttpService } from "../services/httpService";
 import { useNavigate } from "react-router-dom";
 
 function Register({ authorized, setAuthorized }) {
@@ -38,7 +38,6 @@ function Register({ authorized, setAuthorized }) {
         variant="standard"
         required
         type="email"
-        data-msg-containerid="sdfnl"
       />
       <TextField
         onChange={(e) => SetPassword(e.target.value)}

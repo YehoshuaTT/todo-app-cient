@@ -8,6 +8,7 @@ import Todos from "./componnets/Todos";
 import Lists from "./componnets/Lists";
 import ProtectedRout from "./componnets/ProtectedRout";
 import UnProtectedRout from "./componnets/UnProtectedRout";
+import Categories from "./componnets/Categories";
 
 function App() {
   const [authorized, setAuthorized] = useState(false);
@@ -31,8 +32,9 @@ function App() {
             }
           >
             <Route exact path="/main" element={<Main user={user} />} />
-            <Route exact path="/todos" element={<Todos />} />
-            <Route exact path="/list" element={<Lists />} />
+            <Route exact path="/todos/*" element={<Todos />} />
+            <Route exact path="/lists" element={<Lists />} />
+            <Route exact path="/categories" element={<Categories />} />
           </Route>
 
           <Route

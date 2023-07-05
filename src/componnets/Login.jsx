@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
-import HttpService from "../services/httpService";
+import { HttpService } from "../services/httpService";
 import { useNavigate } from "react-router-dom";
 
 function Login({ authorized, setAuthorized }) {

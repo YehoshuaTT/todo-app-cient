@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import HttpService from "../services/httpService";
+import { HttpService } from "../services/httpService";
 
 function ProtectedRout({ authorized, setAuthorized, setUser }) {
   useEffect(() => {
