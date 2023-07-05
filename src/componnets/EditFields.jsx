@@ -2,12 +2,12 @@ import { TextField } from "@mui/material";
 import React, { useState } from "react";
 
 function EditFields({ callBack }) {
-  const [discription, setDiscription] = useState(undefined);
+  const [description, setDescription] = useState(undefined);
   const [title, setTitle] = useState(undefined);
 
   const manegFields = async () => {
-    if (title?.length > 0 && discription?.length > 0)
-      callBack(title, discription);
+    if (title?.length > 0 && description?.length > 0)
+      callBack(title, description);
   };
 
   return (
@@ -21,10 +21,11 @@ function EditFields({ callBack }) {
         onBlur={manegFields}
       />
       <TextField
+        required
         id="outlined-required"
-        label="discription"
-        placeholder="Discripsion"
-        onChange={(e) => setDiscription(e.target.value)}
+        label="description"
+        placeholder="description"
+        onChange={(e) => setDescription(e.target.value)}
         onBlur={manegFields}
       />
     </>

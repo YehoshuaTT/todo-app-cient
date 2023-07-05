@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { IconButton } from "@mui/material";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import EditFields from "./EditFields";
 import {
   CategoryService,
   ListService,
@@ -8,29 +9,34 @@ import {
 } from "../services/httpService";
 
 function EditItem({ type, itemId, setItem }) {
+  const [showFields, setShowFields] = useState(false);
+
   const services = [
     { lists: ListService },
     { categories: CategoryService },
     { todos: TodoService },
   ];
-
-  const deletation = async (itemId) => {
+  const EditFunction = async (title, description) => {
     const service = services.find((service) => type in service);
     console.log(service);
-    if (!window.confirm("Are you sure you want to delete this item?")) return;
 
-    await service[type].update(itemId);
-    setItem(await service[type].index());
+    if (await service[type].update(itemId, { title, description })) {
+      setShowFields(!showFields);
+      setItem(await service[type].index());
+    }
   };
 
   return (
-    <IconButton
-      aria-label="delete"
-      size="large"
-      onClick={() => deletation(itemId)}
-    >
-      <ModeEditOutlineOutlinedIcon fontSize="inherit" />
-    </IconButton>
+    <>
+      <IconButton
+        aria-label="Edit"
+        size="large"
+        onClick={() => setShowFields(!showFields)}
+      >
+        <ModeEditOutlineOutlinedIcon fontSize="inherit" />
+      </IconButton>
+      {showFields && <EditFields callBack={EditFunction} />}
+    </>
   );
 }
 

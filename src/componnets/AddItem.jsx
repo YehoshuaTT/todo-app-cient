@@ -16,12 +16,12 @@ function AddItem({ type, itemId, setItem }) {
     { categories: CategoryService },
     { todos: TodoService },
   ];
-  const addFunction = async (title, discription) => {
+  const addFunction = async (title, description) => {
     debugger;
     const service = services.find((service) => type in service);
     console.log(service);
 
-    if (await service[type].create({ title, discription })) {
+    if (await service[type].create({ title, description })) {
       setShowFields(!showFields);
       setItem(await service[type].index());
     }

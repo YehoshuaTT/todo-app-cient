@@ -4,7 +4,6 @@ import Todos from "./Todos";
 import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
 import AddItem from "./AddItem";
-import EditFields from "./EditFields";
 function Lists() {
   const [selectedList, setSelectedList] = useState(null);
   const [lists, setLists] = useState([]);
@@ -32,6 +31,7 @@ function Lists() {
   return (
     <div className="lists-container">
       Lists
+      <AddItem type={"lists"} setItem={setLists} />
       {lists.map((list) => (
         <div key={list._id}>
           <ul
@@ -40,10 +40,9 @@ function Lists() {
             style={{ fontWeight: selectedList === list ? "bold" : "normal" }}
           >
             {list.title}
+            <DeleteItem type={"lists"} itemId={list._id} setItem={setLists} />
+            <EditItem type={"lists"} itemId={list._id} setItem={setLists} />
           </ul>
-          <DeleteItem type={"lists"} itemId={list._id} setItem={setLists} />
-          <EditItem type={"lists"} itemId={list._id} setItem={setLists} />
-          <AddItem type={"lists"} setItem={setLists} />
 
           {selectedList === list && (
             <ul className="list-todos">
