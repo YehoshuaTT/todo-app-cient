@@ -3,7 +3,6 @@ import axios from "axios";
 class HttpService {
   static async login(registerOrLogin, user) {
     try {
-      console.log(user);
       const response = await axios.post(`/auth/${registerOrLogin}/`, user);
       console.log(response);
       if (response.status === 200) return true;
