@@ -1,14 +1,14 @@
 import { useState } from "react";
 import "./App.css";
-import Login from "./componnets/Login";
-import Main from "./componnets/Main";
+import Login from "./pages/Login";
+import Main from "./pages/Main";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import Register from "./componnets/Register";
-import Todos from "./componnets/Todos";
-import Lists from "./componnets/Lists";
+import Register from "./pages/Register";
+import Todos from "./pages/Todos";
+import Lists from "./pages/Lists";
 import ProtectedRout from "./componnets/ProtectedRout";
 import UnProtectedRout from "./componnets/UnProtectedRout";
-import Categories from "./componnets/Categories";
+import Categories from "./pages/Categories";
 
 function App() {
   const [authorized, setAuthorized] = useState(false);

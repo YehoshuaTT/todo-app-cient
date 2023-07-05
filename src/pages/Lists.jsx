@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ListService } from "../services/httpService";
 import Todos from "./Todos";
-import DeleteItem from "./DeleteItem";
-import EditItem from "./EditItem";
-import AddItem from "./AddItem";
+import DeleteItem from "../componnets/DeleteItem";
+import EditItem from "../componnets/EditItem";
+import AddItem from "../componnets/AddItem";
 function Lists() {
   const [selectedList, setSelectedList] = useState(null);
   const [lists, setLists] = useState([]);
