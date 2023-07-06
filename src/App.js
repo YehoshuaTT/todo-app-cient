@@ -21,8 +21,8 @@ function App() {
       <p>App</p>
 
       <BrowserRouter>
+        <Main user={user} />
         <Routes>
-          <Route exact path="/main" element={<Main user={user} />} />
           <Route
             path="/"
             element={

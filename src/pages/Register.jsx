@@ -26,7 +26,7 @@ function Register({ authorized, setAuthorized }) {
   const logRegFunction = async () => {
     if (await HttpService.login("register", user)) {
       setAuthorized(true);
-      navigate("/main");
+      navigate("/");
     }
   };
 
