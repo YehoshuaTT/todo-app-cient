@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ListService } from "../services/httpService";
 import Todos from "./Todos";
-import EditItem from "../componnets/EditItem";
 import AddList from "../componnets/AddList";
-import DeleteList from "../componnets/SeleteList";
+import DeleteList from "../componnets/DeleteList";
+import EditList from "../componnets/EditList";
 
 function Lists() {
   const [selectedList, setSelectedList] = useState(null);
@@ -32,7 +32,7 @@ function Lists() {
   return (
     <div className="lists-container">
       Lists
-      <AddList type={"lists"} setLists={setLists} />
+      <AddList setLists={setLists} />
       {lists.map((list) => (
         <div key={list._id}>
           <ul
@@ -41,11 +41,10 @@ function Lists() {
             style={{ fontWeight: selectedList === list ? "bold" : "normal" }}
           >
             {list.title}
-            <DeleteList type={"lists"} itemId={list._id} setLists={setLists} />
-            <EditItem
-              type={"lists"}
+            <DeleteList itemId={list._id} setLists={setLists} />
+            <EditList
               itemId={list._id}
-              setItem={setLists}
+              setLists={setLists}
               text={{ title: list.title, description: list.description }}
             />
           </ul>
