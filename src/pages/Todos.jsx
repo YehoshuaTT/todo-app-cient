@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { TodoService } from "../services/httpService";
-import EditItem from "../componnets/EditItem";
 import AddTodo from "../componnets/AddTodo";
 import DeleteTodo from "../componnets/DeleteTodo";
+import EditTodo from "../componnets/EditTodo";
 
 function Todos({ todosFromList }) {
   const [todos, setTodos] = useState([]);
@@ -32,9 +32,9 @@ function Todos({ todosFromList }) {
             <div className="todo-title">{todo.title}</div>
             <div className="todo-description">{todo.description}</div>
             <DeleteTodo itemId={todo._id} setTodos={setTodos} />
-            <EditItem
+            <EditTodo
               itemId={todo._id}
-              setItem={setTodos}
+              setTodos={setTodos}
               text={{ title: todo.title, description: todo.description }}
             />
           </div>
