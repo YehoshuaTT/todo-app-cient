@@ -6,7 +6,7 @@ function DeleteTodo({ itemId, setTodos, setLists }) {
   const deletation = async () => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
     await TodoService.delete(itemId);
-    setLists(await ListService.index());
+    setLists && setLists(await ListService.index());
     setTodos(await TodoService.index());
   };
 

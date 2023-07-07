@@ -34,7 +34,7 @@ function Todos({ todosFromList, setLists }) {
             <DeleteTodo
               itemId={todo._id}
               setTodos={setTodos}
-              setLists={setLists}
+              setLists={setLists ? setLists : ""}
             />
             <EditTodo
               itemId={todo._id}
