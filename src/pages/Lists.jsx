@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ListService } from "../services/httpService";
 import Todos from "./Todos";
-import DeleteItem from "../componnets/DeleteItem";
 import EditItem from "../componnets/EditItem";
-import AddItem from "../componnets/AddItem";
 import AddList from "../componnets/AddList";
+import DeleteList from "../componnets/SeleteList";
 
 function Lists() {
   const [selectedList, setSelectedList] = useState(null);
@@ -42,7 +41,7 @@ function Lists() {
             style={{ fontWeight: selectedList === list ? "bold" : "normal" }}
           >
             {list.title}
-            <DeleteItem type={"lists"} itemId={list._id} setItem={setLists} />
+            <DeleteList type={"lists"} itemId={list._id} setLists={setLists} />
             <EditItem
               type={"lists"}
               itemId={list._id}
