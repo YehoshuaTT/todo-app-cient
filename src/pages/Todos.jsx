@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { TodoService } from "../services/httpService";
-import AddItem from "../componnets/AddItem";
-import DeleteItem from "../componnets/DeleteItem";
 import EditItem from "../componnets/EditItem";
+import AddTodo from "../componnets/AddTodo";
+import DeleteTodo from "../componnets/DeleteTodo";
 
 function Todos({ todosFromList }) {
   const [todos, setTodos] = useState([]);
@@ -23,7 +23,7 @@ function Todos({ todosFromList }) {
     <div className="todo">
       {!todosFromList && (
         <>
-          "My Todos:" <AddItem type={"todos"} setItem={setTodos} />
+          "My Todos:" <AddTodo setTodos={setTodos} />
         </>
       )}
       {todos.length > 0 ? (
@@ -31,9 +31,8 @@ function Todos({ todosFromList }) {
           <div key={todo.id} className="todo-container">
             <div className="todo-title">{todo.title}</div>
             <div className="todo-description">{todo.description}</div>
-            <DeleteItem type={"todos"} itemId={todo._id} setItem={setTodos} />
+            <DeleteTodo itemId={todo._id} setTodos={setTodos} />
             <EditItem
-              type={"todos"}
               itemId={todo._id}
               setItem={setTodos}
               text={{ title: todo.title, description: todo.description }}

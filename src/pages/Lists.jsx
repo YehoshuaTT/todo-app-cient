@@ -41,6 +41,7 @@ function Lists() {
             style={{ fontWeight: selectedList === list ? "bold" : "normal" }}
           >
             {list.title}
+            {/* TODO: add a addTodo button that addes a todo to the specific list */}
             <DeleteList itemId={list._id} setLists={setLists} />
             <EditList
               itemId={list._id}
