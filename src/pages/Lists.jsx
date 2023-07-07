@@ -4,6 +4,7 @@ import Todos from "./Todos";
 import DeleteItem from "../componnets/DeleteItem";
 import EditItem from "../componnets/EditItem";
 import AddItem from "../componnets/AddItem";
+import AddList from "../componnets/AddList";
 
 function Lists() {
   const [selectedList, setSelectedList] = useState(null);
@@ -32,7 +33,7 @@ function Lists() {
   return (
     <div className="lists-container">
       Lists
-      <AddItem type={"lists"} setItem={setLists} />
+      <AddList type={"lists"} setLists={setLists} />
       {lists.map((list) => (
         <div key={list._id}>
           <ul
