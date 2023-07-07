@@ -18,10 +18,9 @@ function EditItem({ type, itemId, setItem, text }) {
   ];
   const EditFunction = async (title, description) => {
     const service = services.find((service) => type in service);
-    console.log(service);
-
+    debugger;
     if (await service[type].update(itemId, { title, description })) {
-      setShowFields(!showFields);
+      setShowFields(false);
       setItem(await service[type].index());
     }
   };

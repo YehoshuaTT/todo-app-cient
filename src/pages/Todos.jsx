@@ -6,7 +6,6 @@ import EditItem from "../componnets/EditItem";
 
 function Todos({ todosFromList }) {
   const [todos, setTodos] = useState([]);
-
   useEffect(() => {
     const fetchTodos = async () => {
       if (todosFromList) {
@@ -22,7 +21,11 @@ function Todos({ todosFromList }) {
 
   return (
     <div className="todo">
-      My Todos: <AddItem type={"todos"} setItem={setTodos} />
+      {!todosFromList && (
+        <>
+          "My Todos:" <AddItem type={"todos"} setItem={setTodos} />
+        </>
+      )}
       {todos.length > 0 ? (
         todos.map((todo) => (
           <div key={todo.id} className="todo-container">

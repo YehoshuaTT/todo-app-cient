@@ -51,9 +51,9 @@ function Lists() {
           </ul>
 
           {selectedList === list && (
-            <ul className="list-todos">
-              {list.todos.map((todo) => (
-                <Todos key={todo._id} todosFromList={todo} />
+            <ul className="list-with-todos">
+              {list.todos?.map((todo) => (
+                <Todos key={todo._id} todosFromList={[todo]} />
               ))}
             </ul>
           )}

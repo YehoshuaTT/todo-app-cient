@@ -6,8 +6,7 @@ function EditFields({ callBack, text }) {
   const [description, setDescription] = useState(text.description);
 
   const manegFields = async () => {
-    if (title?.length > 0 && description?.length > 0)
-      callBack(title, description);
+    if (title?.length > 0) callBack(title, description);
   };
 
   return (
@@ -21,7 +20,7 @@ function EditFields({ callBack, text }) {
         onBlur={manegFields}
       />
       <TextField
-        required
+        // required
         id="outlined-required"
         label="description"
         defaultValue={text.description}
