@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { IconButton, TextField } from "@mui/material";
-import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-import { ListService, TodoService } from "../services/httpService";
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import { ListService } from "../services/httpService";
 
-function EditTodo({ itemId, setTodos, text, setLists }) {
+function AddATodoToList({ setLists, listId }) {
   const [showFields, setShowFields] = useState(false);
-  const [title, setTitle] = useState(text.title);
-  const [description, setDescription] = useState(text.description);
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState();
 
-  const EditFunction = async () => {
+  const addFunction = async () => {
     if (title?.length > 0) {
-      if (await TodoService.update(itemId, { title, description })) {
+      if (await ListService.addTodo(listId, { title, description })) {
         setShowFields(!showFields);
         setLists(await ListService.index());
-        setTodos(await TodoService.index());
       }
     }
   };
@@ -21,29 +20,29 @@ function EditTodo({ itemId, setTodos, text, setLists }) {
   return (
     <>
       <IconButton
-        aria-label="Edit"
+        aria-label="add"
         size="large"
         onClick={() => setShowFields(!showFields)}
       >
-        <ModeEditOutlineOutlinedIcon fontSize="inherit" />
+        <AddBoxOutlinedIcon fontSize="inherit" />
       </IconButton>
-
       {showFields && (
         <>
           <TextField
             required
             id="outlined-required"
             label="title"
-            defaultValue={title}
+            defaultValue=""
             onChange={(e) => setTitle(e.target.value)}
-            onBlur={EditFunction}
+            onBlur={addFunction}
           />
           <TextField
+            // required
             id="outlined-required"
             label="description"
-            defaultValue={description}
+            defaultValue=""
             onChange={(e) => setDescription(e.target.value)}
-            onBlur={EditFunction}
+            onBlur={addFunction}
           />
         </>
       )}
@@ -51,4 +50,4 @@ function EditTodo({ itemId, setTodos, text, setLists }) {
   );
 }
 
-export default EditTodo;
+export default AddATodoToList;

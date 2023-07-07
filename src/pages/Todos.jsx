@@ -4,7 +4,7 @@ import AddTodo from "../componnets/AddTodo";
 import DeleteTodo from "../componnets/DeleteTodo";
 import EditTodo from "../componnets/EditTodo";
 
-function Todos({ todosFromList }) {
+function Todos({ todosFromList, setLists }) {
   const [todos, setTodos] = useState([]);
   useEffect(() => {
     const fetchTodos = async () => {
@@ -31,9 +31,14 @@ function Todos({ todosFromList }) {
           <div key={todo.id} className="todo-container">
             <div className="todo-title">{todo.title}</div>
             <div className="todo-description">{todo.description}</div>
-            <DeleteTodo itemId={todo._id} setTodos={setTodos} />
+            <DeleteTodo
+              itemId={todo._id}
+              setTodos={setTodos}
+              setLists={setLists}
+            />
             <EditTodo
               itemId={todo._id}
+              setLists={setLists}
               setTodos={setTodos}
               text={{ title: todo.title, description: todo.description }}
             />

@@ -4,6 +4,7 @@ import Todos from "./Todos";
 import AddList from "../componnets/AddList";
 import DeleteList from "../componnets/DeleteList";
 import EditList from "../componnets/EditList";
+import AddATodoToList from "../componnets/AddATodoToList";
 
 function Lists() {
   const [selectedList, setSelectedList] = useState(null);
@@ -51,11 +52,21 @@ function Lists() {
           </ul>
 
           {selectedList === list && (
-            <ul className="list-with-todos">
-              {list.todos?.map((todo) => (
-                <Todos key={todo._id} todosFromList={[todo]} />
-              ))}
-            </ul>
+            <>
+              <ul className="list-with-todos">
+                <div className="add-todo-button">
+                  <AddATodoToList listId={list._id} setLists={setLists} />
+                  <h5>Add Todo</h5>
+                </div>
+                {list.todos?.map((todo) => (
+                  <Todos
+                    key={todo._id}
+                    todosFromList={[todo]}
+                    setLists={setLists}
+                  />
+                ))}
+              </ul>
+            </>
           )}
         </div>
       ))}
