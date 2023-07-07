@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CategoryService } from "../services/httpService";
-import AddItem from "../componnets/AddItem";
-import DeleteItem from "../componnets/DeleteItem";
-import EditItem from "../componnets/EditItem";
+import AddCategory from "../componnets/AddCategory";
+import EditCategory from "../componnets/EditCategory";
+import DeleteCategory from "../componnets/DeleteCategory";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
@@ -19,24 +19,21 @@ function Categories() {
 
   return (
     <div className="category">
-      My Categories: <AddItem type={"categories"} setItem={setCategories} />
+      My Categories: <AddCategory setCategories={setCategories} />
       {categories.length > 0 ? (
         categories.map((category) => (
           <div key={category._id} className="category-container">
             <div className="category-title">{category.title}</div>
             <div className="category-description">{category.description}</div>
-            <DeleteItem
-              type={"categories"}
+            <DeleteCategory
               itemId={category._id}
-              setItem={setCategories}
+              setCategories={setCategories}
             />
-            <EditItem
-              type={"categories"}
+            <EditCategory
               itemId={category._id}
-              setItem={setCategories}
+              setCategories={setCategories}
               text={{
                 title: category.title,
-                description: category.description,
               }}
             />
           </div>
