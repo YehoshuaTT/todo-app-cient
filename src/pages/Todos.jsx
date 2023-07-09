@@ -44,8 +44,6 @@ function Todos({ todosFromList, setLists }) {
                 setTodos={setTodos}
                 setLists={setLists ? setLists : ""}
               />
-
-              {/* TODO: add a toggle function  */}
             </div>
           </div>
         ))

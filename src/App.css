@@ -16,10 +16,10 @@ body {
   height: 100vh;
   flex-direction: row;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: flex-start;
+  background-color: rgb(81, 150, 220);
 }
 .main {
-  border-right: solid black 1px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -30,8 +30,12 @@ body {
   height: 40%;
 }
 .main-link {
-  /* border: solid black 1px; */
   margin-top: 5%;
+  border: solid black 1px;
+  padding: 10%;
+  border-radius: 1em;
+  background-color: rgba(154, 154, 182, 0.91);
+  font-weight: 700;
 }
 h3 {
   overflow-wrap: break-word;
@@ -56,7 +60,6 @@ h3 {
 .all-lists {
   display: flex;
   width: 100%;
-  border: solid black 1px;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
@@ -64,11 +67,12 @@ h3 {
   align-items: stretch;
 }
 .single-list {
-  width: 33%;
+  width: 30%;
   display: flex;
-  border: solid black 1px;
+  border-radius: 0.75em;
   align-items: center;
   flex-direction: column;
+  background-color: rgb(200, 201, 202);
 }
 .single-list-title {
   padding-left: 3%;
@@ -83,15 +87,20 @@ h3 {
 .todo {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  border: solid black 1px;
+  width: 98%;
+  border-radius: 0.85em;
+  margin-top: 3px;
+  background-color: rgb(255, 251, 243);
+}
+.todo :hover {
+  background-color: rgb(143, 148, 203);
+  border-radius: 0.85em;
 }
 .todo-butttons {
   display: flex;
 }
 .list-header {
   display: flex;
-  border: solid black 1px;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
@@ -117,4 +126,13 @@ h3 {
 
 .add-todo-to-list :hover {
   cursor: pointer;
+}
+.toggle {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.completed {
+  padding: 3px;
+  margin: 1px;
 }

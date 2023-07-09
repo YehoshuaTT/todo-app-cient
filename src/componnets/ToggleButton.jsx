@@ -11,8 +11,9 @@ function ToggleButton({ todoId, completed }) {
     toggled.status === 200 && setChecked(!event.target.checked);
   };
   return (
-    <div>
+    <div className="toggle">
       <Switch {...label} defaultChecked onChange={toggle} checked={checked} />
+      <h6 className="completed">Completed</h6>
     </div>
   );
 }
