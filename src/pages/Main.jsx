@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 
 function Main() {
   return (
-    <div>
-      Navbar
-      <nav>
-        <br></br>
-        <Link to={"/lists"}> My lists </Link>
-        <Link to={"/todos"}> My Todos </Link>
-        <Link to={"/categories"}>My categories </Link>
-      </nav>
-      <br></br>
+    <div className="main">
+      <Link to={"/lists"} className="main-link">
+        My lists
+      </Link>
+      <Link to={"/todos"} className="main-link">
+        My Todos
+      </Link>
+      <Link to={"/categories"} className="main-link">
+        My categories
+      </Link>
     </div>
   );
 }

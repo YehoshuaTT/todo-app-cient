@@ -1,38 +1,120 @@
-.App {
-  text-align: center;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: white;
+  font-family: sans-serif;
+  border-top: 5px solid #aa8e8d;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app {
+  border: solid black 1px;
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
+  border-right: solid black 1px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  width: 20vw;
+  height: 40%;
+}
+.main-link {
+  /* border: solid black 1px; */
+  margin-top: 5%;
+}
+h3 {
+  overflow-wrap: break-word;
+  font-weight: 300;
+}
+.lists-container {
+  display: flex;
+  width: 78vw;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.add-list-button {
+  display: flex;
+}
+#lists-title {
+  margin-right: 10%;
+}
+.all-lists {
+  display: flex;
+  width: 100%;
+  border: solid black 1px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.single-list {
+  width: 33%;
+  display: flex;
+  border: solid black 1px;
+  align-items: center;
+  flex-direction: column;
+}
+.single-list-title {
+  padding-left: 3%;
+}
+.single-list-title :hover {
+  cursor: pointer;
+}
+.new-todo-text:hover {
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.todo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: solid black 1px;
+}
+.todo-butttons {
+  display: flex;
+}
+.list-header {
+  display: flex;
+  border: solid black 1px;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+}
+.todo-title {
+  padding: 2%;
+  text-align: left;
+}
+.add-todo-button {
+  width: 100%;
+
+  display: flex;
+}
+.add-todo-fields {
+  display: flex;
+}
+.add-todo-to-list {
+  width: 100%;
+  display: flex;
+}
+
+.add-todo-to-list :hover {
+  cursor: pointer;
 }

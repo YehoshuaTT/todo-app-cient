@@ -1,52 +1,38 @@
 import React, { useState } from "react";
-import { IconButton, TextField } from "@mui/material";
-import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import { TextField } from "@mui/material";
 import { ListService } from "../services/httpService";
 
 function EditList({ itemId, setLists, text }) {
   const [showFields, setShowFields] = useState(false);
   const [title, setTitle] = useState(text.title);
-  const [description, setDescription] = useState(text.description);
 
   const EditFunction = async () => {
     if (title?.length > 0) {
-      if (await ListService.update(itemId, { title, description })) {
+      if (await ListService.update(itemId, { title })) {
         setShowFields(false);
         setLists(await ListService.index());
       }
+    } else {
+      setTitle(text.title);
+      setShowFields(false);
     }
   };
 
   return (
-    <>
-      <IconButton
-        aria-label="Edit"
-        size="large"
-        onClick={() => setShowFields(!showFields)}
-      >
-        <ModeEditOutlineOutlinedIcon fontSize="inherit" />
-      </IconButton>
-
-      {showFields && (
-        <>
-          <TextField
-            required
-            id="outlined-required"
-            label="title"
-            defaultValue={title}
-            onChange={(e) => setTitle(e.target.value)}
-            onBlur={EditFunction}
-          />
-          <TextField
-            id="outlined-required"
-            label="description"
-            defaultValue={description}
-            onChange={(e) => setDescription(e.target.value)}
-            onBlur={EditFunction}
-          />
-        </>
+    <div className="edit-list" onBlur={EditFunction}>
+      {!showFields ? (
+        <h3 onClick={() => setShowFields(!showFields)}>{text.title}</h3>
+      ) : (
+        <TextField
+          size="small"
+          id="outlined-required"
+          label="title"
+          defaultValue={title}
+          onChange={(e) => setTitle(e.target.value)}
+          autoFocus={true}
+        />
       )}
-    </>
+    </div>
   );
 }
 

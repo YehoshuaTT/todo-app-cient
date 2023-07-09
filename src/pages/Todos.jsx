@@ -30,21 +30,21 @@ function Todos({ todosFromList, setLists }) {
       {todos.length > 0 ? (
         todos.map((todo) => (
           <div key={todo._id} className="todo-container">
-            <div className="todo-title">{todo.title}</div>
+            <EditTodo
+              itemId={todo._id}
+              setLists={setLists}
+              setTodos={setTodos}
+              text={{ title: todo.title, description: todo.description }}
+            />
             <div className="todo-description">{todo.description}</div>
-            <div className="butttons">
+            <div className="todo-butttons">
               <ToggleButton todoId={todo._id} completed={todo.completed} />
               <DeleteTodo
                 itemId={todo._id}
                 setTodos={setTodos}
                 setLists={setLists ? setLists : ""}
               />
-              <EditTodo
-                itemId={todo._id}
-                setLists={setLists}
-                setTodos={setTodos}
-                text={{ title: todo.title, description: todo.description }}
-              />
+
               {/* TODO: add a toggle function  */}
             </div>
           </div>

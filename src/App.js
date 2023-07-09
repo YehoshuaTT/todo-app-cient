@@ -17,9 +17,7 @@ function App() {
   console.log(authorized);
 
   return (
-    <div className="App">
-      <p>App</p>
-
+    <div className="app">
       <BrowserRouter>
         <Main user={user} />
         <Routes>

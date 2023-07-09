@@ -7,7 +7,6 @@ import EditList from "../componnets/EditList";
 import AddATodoToList from "../componnets/AddATodoToList";
 
 function Lists() {
-  const [selectedList, setSelectedList] = useState(null);
   const [lists, setLists] = useState([]);
 
   useEffect(() => {
@@ -22,54 +21,41 @@ function Lists() {
     fetchLists();
   }, []);
 
-  const toggleShowTodos = (list) => {
-    if (selectedList === list) {
-      setSelectedList(null);
-    } else {
-      setSelectedList(list);
-    }
-  };
-
   return (
     <div className="lists-container">
-      Lists
-      <AddList setLists={setLists} />
-      {lists.map((list) => (
-        <div key={list._id}>
-          <ul
-            className="list-ul"
-            onClick={() => toggleShowTodos(list)}
-            style={{ fontWeight: selectedList === list ? "bold" : "normal" }}
-          >
-            {list.title}
-            {/* TODO: add a addTodo button that addes a todo to the specific list */}
-            <DeleteList itemId={list._id} setLists={setLists} />
-            <EditList
-              itemId={list._id}
-              setLists={setLists}
-              text={{ title: list.title, description: list.description }}
-            />
-          </ul>
+      <div className="add-list-button">
+        <h1 id="lists-title">Lists</h1>
+        <AddList setLists={setLists} />
+      </div>
+      <div className="all-lists">
+        {lists.map((list) => (
+          <div key={list._id} className="single-list">
+            <div className="list-header">
+              <h4 className="single-list-title">
+                <EditList
+                  itemId={list._id}
+                  setLists={setLists}
+                  text={{ title: list.title, description: list.description }}
+                />
+              </h4>
+              <div>
+                <DeleteList itemId={list._id} setLists={setLists} />
+              </div>
+            </div>
 
-          {selectedList === list && (
-            <>
-              <ul className="list-with-todos">
-                <div className="add-todo-button">
-                  <AddATodoToList listId={list._id} setLists={setLists} />
-                  <h5>Add Todo</h5>
-                </div>
-                {list.todos?.map((todo) => (
-                  <Todos
-                    key={todo._id}
-                    todosFromList={[todo]}
-                    setLists={setLists}
-                  />
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
-      ))}
+            {list.todos?.map((todo) => (
+              <Todos
+                key={todo._id}
+                todosFromList={[todo]}
+                setLists={setLists}
+              />
+            ))}
+            <div className="add-todo-button">
+              <AddATodoToList listId={list._id} setLists={setLists} />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -19,35 +19,23 @@ function EditTodo({ itemId, setTodos, text, setLists }) {
   };
 
   return (
-    <>
-      <IconButton
-        aria-label="Edit"
-        size="large"
-        onClick={() => setShowFields(!showFields)}
-      >
-        <ModeEditOutlineOutlinedIcon fontSize="inherit" />
-      </IconButton>
-
-      {showFields && (
+    <div className="todo-title" onBlur={EditFunction}>
+      {!showFields ? (
+        <h3 onClick={() => setShowFields(!showFields)}>{text.title}</h3>
+      ) : (
         <>
           <TextField
             required
+            multiline
             id="outlined-required"
             label="title"
             defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
-            onBlur={EditFunction}
-          />
-          <TextField
-            id="outlined-required"
-            label="description"
-            defaultValue={description}
-            onChange={(e) => setDescription(e.target.value)}
-            onBlur={EditFunction}
+            autoFocus={true}
           />
         </>
       )}
-    </>
+    </div>
   );
 }
 

@@ -6,19 +6,19 @@ import { ListService } from "../services/httpService";
 function AddATodoToList({ setLists, listId }) {
   const [showFields, setShowFields] = useState(false);
   const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
 
   const addFunction = async () => {
     if (title?.length > 0) {
-      if (await ListService.addTodo(listId, { title, description })) {
+      if (await ListService.addTodo(listId, { title })) {
         setShowFields(!showFields);
         setLists(await ListService.index());
+        setTitle("");
       }
-    }
+    } else setShowFields(!showFields);
   };
 
   return (
-    <>
+    <div className="add-todo-to-list" onBlur={addFunction}>
       <IconButton
         aria-label="add"
         size="large"
@@ -26,27 +26,26 @@ function AddATodoToList({ setLists, listId }) {
       >
         <AddBoxOutlinedIcon fontSize="inherit" />
       </IconButton>
-      {showFields && (
-        <>
+      {!showFields ? (
+        <h5
+          className="new-todo-text"
+          onClick={() => setShowFields(!showFields)}
+        >
+          New Todo
+        </h5>
+      ) : (
+        <div className="add-todo-fields">
           <TextField
             required
             id="outlined-required"
             label="title"
             defaultValue=""
             onChange={(e) => setTitle(e.target.value)}
-            onBlur={addFunction}
+            autoFocus={true}
           />
-          <TextField
-            // required
-            id="outlined-required"
-            label="description"
-            defaultValue=""
-            onChange={(e) => setDescription(e.target.value)}
-            onBlur={addFunction}
-          />
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 
