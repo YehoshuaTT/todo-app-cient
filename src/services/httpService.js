@@ -135,7 +135,7 @@ class TodoService {
 
   static async toggle(todoId) {
     try {
-      const { data } = await axios.put(`/todos/${todoId}/toggle`);
+      const data = await axios.put(`/todos/${todoId}/toggle`);
       return data;
     } catch (error) {
       console.log(error);

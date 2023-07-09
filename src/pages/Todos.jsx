@@ -3,6 +3,7 @@ import { TodoService } from "../services/httpService";
 import AddTodo from "../componnets/AddTodo";
 import DeleteTodo from "../componnets/DeleteTodo";
 import EditTodo from "../componnets/EditTodo";
+import ToggleButton from "../componnets/ToggleButton";
 
 function Todos({ todosFromList, setLists }) {
   const [todos, setTodos] = useState([]);
@@ -28,20 +29,24 @@ function Todos({ todosFromList, setLists }) {
       )}
       {todos.length > 0 ? (
         todos.map((todo) => (
-          <div key={todo.id} className="todo-container">
+          <div key={todo._id} className="todo-container">
             <div className="todo-title">{todo.title}</div>
             <div className="todo-description">{todo.description}</div>
-            <DeleteTodo
-              itemId={todo._id}
-              setTodos={setTodos}
-              setLists={setLists ? setLists : ""}
-            />
-            <EditTodo
-              itemId={todo._id}
-              setLists={setLists}
-              setTodos={setTodos}
-              text={{ title: todo.title, description: todo.description }}
-            />
+            <div className="butttons">
+              <ToggleButton todoId={todo._id} completed={todo.completed} />
+              <DeleteTodo
+                itemId={todo._id}
+                setTodos={setTodos}
+                setLists={setLists ? setLists : ""}
+              />
+              <EditTodo
+                itemId={todo._id}
+                setLists={setLists}
+                setTodos={setTodos}
+                text={{ title: todo.title, description: todo.description }}
+              />
+              {/* TODO: add a toggle function  */}
+            </div>
           </div>
         ))
       ) : (
