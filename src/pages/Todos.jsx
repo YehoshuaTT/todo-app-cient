@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { TodoService } from "../services/httpService";
-import DeleteTodo from "../componnets/DeleteTodo";
+import { ListService, TodoService } from "../services/httpService";
 import EditTodo from "../componnets/EditTodo";
 import ToggleButton from "../componnets/ToggleButton";
 import { IconButton, TextField } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Todos({ todosFromList, setLists }) {
   const [todos, setTodos] = useState([]);
@@ -31,6 +31,14 @@ function Todos({ todosFromList, setLists }) {
       }
     }
   };
+
+  const deletation = async (itemId) => {
+    if (!window.confirm("Are you sure you want to delete this item?")) return;
+    await TodoService.delete(itemId);
+    setLists && setLists(await ListService.index());
+    setTodos(await TodoService.index());
+  };
+
   return (
     <div className="todo">
       {!todosFromList && (
@@ -66,11 +74,13 @@ function Todos({ todosFromList, setLists }) {
             />
             <div className="todo-butttons">
               <ToggleButton todoId={todo._id} completed={todo.completed} />
-              <DeleteTodo
-                itemId={todo._id}
-                setTodos={setTodos}
-                setLists={setLists ? setLists : ""}
-              />
+              <IconButton
+                aria-label="delete"
+                size="large"
+                onClick={() => deletation(todo._id)}
+              >
+                <DeleteIcon fontSize="inherit" />
+              </IconButton>
             </div>
           </div>
         ))

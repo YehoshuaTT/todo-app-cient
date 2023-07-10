@@ -12,7 +12,7 @@ function ToggleButton({ todoId, completed }) {
   };
   return (
     <div className="toggle">
-      <Switch {...label} defaultChecked onChange={toggle} checked={checked} />
+      <Switch {...label} onChange={toggle} checked={checked} />
       <h6 className="completed">Completed</h6>
     </div>
   );

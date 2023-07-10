@@ -18,21 +18,16 @@ function AddATodoToList({ setLists, listId }) {
   };
 
   return (
-    <div className="add-todo-to-list" onBlur={addFunction}>
-      <IconButton
-        aria-label="add"
-        size="large"
-        onClick={() => setShowFields(!showFields)}
-      >
+    <div
+      className="add-todo-to-list"
+      onBlur={addFunction}
+      onClick={() => setShowFields(!showFields)}
+    >
+      <IconButton aria-label="add" size="large">
         <AddBoxOutlinedIcon fontSize="inherit" />
       </IconButton>
       {!showFields ? (
-        <h5
-          className="new-todo-text"
-          onClick={() => setShowFields(!showFields)}
-        >
-          New Todo
-        </h5>
+        <h5 className="new-todo-text">New Todo</h5>
       ) : (
         <div className="add-todo-fields">
           <TextField

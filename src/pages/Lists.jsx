@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { ListService } from "../services/httpService";
-import Todos from "./Todos";
-import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
-import DeleteList from "../componnets/DeleteList";
-import EditList from "../componnets/EditList";
-import AddATodoToList from "../componnets/AddATodoToList";
 import { IconButton, TextField } from "@mui/material";
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import AddATodoToList from "../componnets/AddATodoToList";
+import Todos from "./Todos";
+import EditList from "../componnets/EditList";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Lists() {
   const [lists, setLists] = useState([]);
@@ -20,6 +20,11 @@ function Lists() {
         setTitle("");
       }
     } else setShowFields(false);
+  };
+  const deletation = async (itemId) => {
+    if (!window.confirm("Are you sure you want to delete this item?")) return;
+    await ListService.delete(itemId);
+    setLists(await ListService.index());
   };
 
   useEffect(() => {
@@ -71,9 +76,13 @@ function Lists() {
                   text={{ title: list.title, description: list.description }}
                 />
               </h4>
-              <div>
-                <DeleteList itemId={list._id} setLists={setLists} />
-              </div>
+              <IconButton
+                aria-label="delete"
+                size="large"
+                onClick={() => deletation(list._id)}
+              >
+                <DeleteIcon fontSize="inherit" />
+              </IconButton>
             </div>
 
             {list.todos?.map((todo) => (
