@@ -3,7 +3,7 @@ import { ListService } from "../services/httpService";
 import { IconButton, TextField } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import AddATodoToList from "../componnets/AddATodoToList";
-import Todos from "./Todos";
+import Todos from "./Todo";
 import EditList from "../componnets/EditList";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -32,7 +32,6 @@ function Lists() {
       const lists = await ListService.index();
       if (lists) {
         setLists(lists);
-        console.log(lists);
       }
     };
 

@@ -13,7 +13,6 @@ function Categories() {
   useEffect(() => {
     const fetchCategories = async () => {
       const fetchdCategories = await CategoryService.index();
-      console.log(fetchdCategories);
       setCategories(fetchdCategories);
     };
 

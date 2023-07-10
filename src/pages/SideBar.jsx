@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Main() {
+function SideBar() {
   return (
     <div className="main">
-      <Link to={"/lists"} className="main-link">
+      <Link to={"/"} className="main-link">
         My lists
       </Link>
       <Link to={"/todos"} className="main-link">
@@ -17,4 +17,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default SideBar;
