@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import { IconButton, TextField } from "@mui/material";
-import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import { TextField } from "@mui/material";
 import { ListService, TodoService } from "../services/httpService";
 
 function EditTodo({ itemId, setTodos, text, setLists }) {
   const [showFields, setShowFields] = useState(false);
   const [title, setTitle] = useState(text.title);
-  const [description, setDescription] = useState(text.description);
 
   const EditFunction = async () => {
     if (title?.length > 0) {
-      if (await TodoService.update(itemId, { title, description })) {
+      if (await TodoService.update(itemId, { title })) {
         setShowFields(!showFields);
         setLists(await ListService.index());
         setTodos(await TodoService.index());

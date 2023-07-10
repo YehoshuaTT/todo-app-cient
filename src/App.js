@@ -5,7 +5,7 @@ import ProtectedRout from "./componnets/ProtectedRout";
 import UnProtectedRout from "./componnets/UnProtectedRout";
 
 import Login from "./pages/Login";
-import Main from "./pages/Main";
+import SideBar from "./pages/SideBar";
 import Register from "./pages/Register";
 import Todos from "./pages/Todos";
 import Lists from "./pages/Lists";
@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="app">
       <BrowserRouter>
-        <Main user={user} />
+        <SideBar user={user} />
         <Routes>
           <Route
             path="/"

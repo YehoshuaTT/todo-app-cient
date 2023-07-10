@@ -31,11 +31,23 @@ body {
 }
 .main-link {
   margin-top: 5%;
-  border: solid black 1px;
+  border: solid rgba(107, 107, 125, 0.91) 1px;
   padding: 10%;
   border-radius: 1em;
   background-color: rgba(154, 154, 182, 0.91);
   font-weight: 700;
+  text-align: center;
+  width: 120px;
+}
+a,
+a:hover,
+a:visited,
+a:active {
+  color: unset;
+  text-decoration: none;
+}
+.main-link:hover {
+  background-color: rgba(168, 168, 183, 0.91);
 }
 h3 {
   overflow-wrap: break-word;
@@ -54,6 +66,10 @@ h3 {
 .add-list-button {
   display: flex;
 }
+.add-list {
+  display: flex;
+  align-items: center;
+}
 #lists-title {
   margin-right: 10%;
 }
@@ -63,7 +79,7 @@ h3 {
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: stretch;
 }
 .single-list {
@@ -135,4 +151,8 @@ h3 {
 .completed {
   padding: 3px;
   margin: 1px;
+}
+
+.MuiTextField-root {
+  display: flex;
 }

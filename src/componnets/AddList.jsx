@@ -8,13 +8,16 @@ function AddList({ setLists }) {
   const [title, setTitle] = useState([]);
   const [description, setDescription] = useState([]);
 
-  const addFunction = async () => {
+  const addFunction = async (e) => {
     if (title?.length > 0) {
       if (await ListService.create({ title, description })) {
         setShowFields(!showFields);
         setLists(await ListService.index());
       }
     }
+  };
+  const check = (e) => {
+    // e.key === "enter" && addFunction();
   };
 
   return (
@@ -32,7 +35,6 @@ function AddList({ setLists }) {
             required
             id="outlined-required"
             label="title"
-            defaultValue=""
             onChange={(e) => setTitle(e.target.value)}
             onBlur={addFunction}
           />
@@ -40,9 +42,9 @@ function AddList({ setLists }) {
             // required
             id="outlined-required"
             label="description"
-            defaultValue=""
             onChange={(e) => setDescription(e.target.value)}
             onBlur={addFunction}
+            onKeyDown={check()}
           />
         </>
       )}
