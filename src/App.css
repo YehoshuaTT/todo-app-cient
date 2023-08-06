@@ -1,38 +1,174 @@
-.App {
-  text-align: center;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: white;
+  font-family: sans-serif;
+  border-top: 5px solid #aa8e8d;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app {
+  border: solid black 1px;
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  background-color: rgb(81, 150, 220);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  width: 20vw;
+  height: 40%;
+}
+.main-link {
+  margin-top: 5%;
+  border: solid rgba(107, 107, 125, 0.91) 1px;
+  padding: 10%;
+  border-radius: 1em;
+  background-color: rgba(154, 154, 182, 0.91);
+  font-weight: 700;
+  text-align: center;
+  width: 120px;
+}
+a,
+a:hover,
+a:visited,
+a:active {
+  color: unset;
+  text-decoration: none;
+}
+.main-link:hover {
+  background-color: rgba(168, 168, 183, 0.91);
+}
+h3 {
+  overflow-wrap: break-word;
+  font-weight: 300;
+}
+.lists-container {
+  display: flex;
+  width: 78vw;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.add-list-button {
+  display: flex;
+}
+.add-list {
+  display: flex;
+  align-items: center;
+}
+#lists-title {
+  margin-right: 10%;
+}
+.all-lists {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.single-list {
+  width: 30%;
+  display: flex;
+  border-radius: 0.75em;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(200, 201, 202);
+}
+.single-list-title {
+  padding-left: 3%;
+}
+.single-list-title :hover {
+  cursor: pointer;
+}
+.new-todo-text:hover {
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.todo {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  border-radius: 0.85em;
+  margin-top: 3px;
+  background-color: rgb(255, 251, 243);
+}
+.todo :hover {
+  background-color: rgb(143, 148, 203);
+  border-radius: 0.85em;
+}
+.todo-butttons {
+  display: flex;
+}
+.list-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+}
+.todo-title {
+  padding: 2%;
+  text-align: left;
+}
+.add-todo-button {
+  width: 100%;
+
+  display: flex;
+}
+.add-todo-fields {
+  display: flex;
+}
+.add-todo-to-list {
+  width: 100%;
+  display: flex;
+}
+
+.add-todo-to-list :hover {
+  cursor: pointer;
+}
+.toggle {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.completed {
+  padding: 3px;
+  margin: 1px;
+}
+
+.MuiTextField-root {
+  display: flex;
+}
+
+.all-todos {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 85vh;
+  align-content: center;
+  width: 70vw;
+}
+.all-todos-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 100px;
 }

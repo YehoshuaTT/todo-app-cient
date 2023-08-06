@@ -3,7 +3,6 @@ import axios from "axios";
 class HttpService {
   static async login(registerOrLogin, user) {
     try {
-      console.log(user);
       const response = await axios.post(`/auth/${registerOrLogin}/`, user);
       console.log(response);
       if (response.status === 200) return true;
@@ -25,7 +24,7 @@ class HttpService {
 }
 
 class ListService {
-  static async Index() {
+  static async index() {
     try {
       const { data } = await axios.get(`/lists`);
       return data;
@@ -136,8 +135,7 @@ class TodoService {
 
   static async toggle(todoId) {
     try {
-      const { data } = await axios.put(`/todos/${todoId}/toggle`);
-      return data;
+      return await axios.put(`/todos/${todoId}/toggle`);
     } catch (error) {
       console.log(error);
     }

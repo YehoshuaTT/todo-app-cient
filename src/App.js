@@ -1,25 +1,26 @@
-import { useState } from "react";
 import "./App.css";
-import Login from "./componnets/Login";
-import Main from "./componnets/Main";
+import { useState } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import Register from "./componnets/Register";
-import Todos from "./componnets/Todos";
-import Lists from "./componnets/Lists";
 import ProtectedRout from "./componnets/ProtectedRout";
 import UnProtectedRout from "./componnets/UnProtectedRout";
-import Categories from "./componnets/Categories";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Todos from "./pages/Todo";
+import Lists from "./pages/Lists";
+import Categories from "./pages/Categories";
+import SideBar from "./pages/SideBar";
+import AllTodos from "./pages/AllTodos";
 
 function App() {
   const [authorized, setAuthorized] = useState(false);
   const [user, setUser] = useState(null);
-  console.log(authorized);
+  // console.log(authorized);
 
   return (
-    <div className="App">
-      <p>App</p>
-
+    <div className="app">
       <BrowserRouter>
+        <SideBar user={user} />
         <Routes>
           <Route
             path="/"
@@ -31,9 +32,8 @@ function App() {
               />
             }
           >
-            <Route exact path="/main" element={<Main user={user} />} />
-            <Route exact path="/todos/*" element={<Todos />} />
-            <Route exact path="/lists" element={<Lists />} />
+            <Route exact path="/" element={<Lists />} />
+            <Route exact path="/todos/*" element={<AllTodos />} />
             <Route exact path="/categories" element={<Categories />} />
           </Route>
 
